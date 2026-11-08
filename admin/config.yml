@@ -1,0 +1,25 @@
+# Preparação da área de administração UC04995.
+# ATENÇÃO: esta configuração é preliminar. O acesso GitHub OAuth
+# ainda necessita de um serviço de autenticação; não publicar sem o configurar.
+# O manual atual é um index.html monolítico e precisa de ser separado
+# em ficheiros de conteúdo antes de a edição visual funcionar.
+backend:
+  name: github
+  repo: dorar3migio-afk/UC04995-Manual.
+  branch: main
+media_folder: "imagens"
+public_folder: "/imagens"
+locale: pt
+collections:
+  - name: "capitulos"
+    label: "Capítulos (estrutura em preparação)"
+    folder: "conteudos/capitulos"
+    create: false
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "Título", name: "title", widget: "string" }
+      - { label: "Número", name: "numero", widget: "number" }
+      - { label: "Desbloqueio (Portugal continental)", name: "desbloqueio", widget: "datetime", format: "YYYY-MM-DDTHH:mm:ssZ" }
+      - { label: "Imagem", name: "imagem", widget: "image", required: false }
+      - { label: "Desenvolvimento", name: "body", widget: "markdown" }
