@@ -893,7 +893,7 @@ function lisbonNow(){
  const parts=new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Lisbon',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
  const d=Object.fromEntries(parts.map(p=>[p.type,p.value]));return `${d.year}-${d.month}-${d.day}T${d.hour}:${d.minute}:${d.second}`;
 }
-function isUnlocked(i){return lisbonNow()>=unlockSchedule[i]}
+function isUnlocked(i){return true} // Todos os capítulos disponíveis sem restrições de datas.
 function refreshLocks(){nav.forEach((b,i)=>{const locked=!isUnlocked(i);b.classList.toggle('locked',locked);b.setAttribute('aria-label',(locked?'Bloqueado até '+unlockLabels[i]+': ':'Abrir ')+'capítulo '+(i+1));let icon=b.querySelector('.lock-icon');if(!icon){icon=document.createElement('span');icon.className='lock-icon';icon.setAttribute('aria-hidden','true');b.appendChild(icon)}icon.textContent=locked?'🔒':'';});}
 const lockScreen=document.createElement('section');lockScreen.className='chapter-lock';lockScreen.id='chapter-lock';lockScreen.hidden=true;document.querySelector('main')?.appendChild(lockScreen);
 const chapters=Array.from(document.querySelectorAll('.chapter'));const nav=Array.from(document.querySelectorAll('.chapter-nav'));let active=0;let done=new Set();try{done=new Set(JSON.parse(localStorage.getItem('uc04995-done')||'[]'))}catch(e){};
